@@ -1,6 +1,6 @@
 <?php
 
-class Model {
+class Model{
     protected $db;
     public $_table;
     
@@ -14,9 +14,12 @@ class Model {
         $this->db->query($sql);
     }
     
-    public function read( $where = null){
+    public function read( $where = null, $limit = null, $offset = null , $orderby =null){
         $where = ($where != null ? "WHERE {$where}" : "");
-        $sql = "SELECT * FROM `{$this->_table}` {$where}";
+        $limit = ($limit != null ? "LIMIT {$limit}" : "");
+        $offset = ($offset != null ? "OFFSET {$offset}" : "");
+        $orderby = ($orderby != null ? "ORDER BY {$orderby}" : "");
+        $sql = "SELECT * FROM `{$this->_table}` {$where} {$orderby} {$limit} {$offset}";
         $q = $this->db->query($sql);
         $q->setFetchMode(PDO::FETCH_ASSOC);
         return $q->fetchAll();

@@ -4,6 +4,6 @@
  *
  * @author MSeixas
  */
-class ProdutosModel extends Model{
-    public $_table = 'olhos';
+class index extends Model{
+    public $_tabela = 'olhos';
 }
